@@ -7,14 +7,19 @@
     <div class="first-level-nav-wrapper">
       <FirstLevelNav />
     </div>
+    <div class="side-bar-wrapper">
+      <SideBar />
+    </div>
   </div>
 </template>
 <script>
-import FirstLevelNav from "../components/FirstLevelNav.vue";
+import FirstLevelNav from '../components/FirstLevelNav.vue';
+import SideBar from '../components/SideBar.vue';
 
 export default {
   components: {
     FirstLevelNav,
+    SideBar,
   },
 };
 </script>
