@@ -7,7 +7,10 @@
       <van-tabbar-item :to="{ name: 'Classify' }" icon="apps-o"
         >分类</van-tabbar-item
       >
-      <van-tabbar-item :badge="badge" :to="{ name: 'Shopping' }" icon="shopping-cart-o"
+      <van-tabbar-item :badge="badge"
+        :to="{ name: 'Shopping' }"
+        icon="shopping-cart-o"
+        id="shopCar"
         >购物车</van-tabbar-item
       >
       <van-tabbar-item :to="{ name: 'User' }" icon="user-circle-o"
