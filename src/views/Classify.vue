@@ -4,23 +4,33 @@
       <van-icon name="search" class="search-icon" />
       荔枝水果9.95
     </div>
-    <div class="first-level-nav-wrapper">
-      <FirstLevelNav />
-    </div>
-    <div class="side-bar-wrapper">
+    <FirstLevelNav />
+    <template v-if="showContent">
       <SideBar />
-    </div>
+      <GoodsList />
+    </template>
+    <van-loading
+      v-else-if="showContent !== true"
+      type="spinner"
+      color="#3296fa"
+      size="2rem"
+      vertical
+    />
   </div>
 </template>
 <script>
+import { mapState } from 'vuex';
 import FirstLevelNav from '../components/FirstLevelNav.vue';
 import SideBar from '../components/SideBar.vue';
+import GoodsList from '../components/GoodsList.vue';
 
 export default {
   components: {
     FirstLevelNav,
     SideBar,
+    GoodsList,
   },
+  computed: mapState(['showContent']),
 };
 </script>
 <style scoped lang='less'>

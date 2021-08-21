@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions, mapMutations, mapState } from 'vuex';
 import tools from '../utils/tools';
 
 export default {
@@ -25,6 +25,8 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['getGoodsList']),
+    ...mapMutations(['resetGoodsList']),
     scrollTo(i, e) {
       if (this.move) {
         return;
@@ -36,9 +38,16 @@ export default {
       const sHeight = e.target.offsetHeight; // 子元素高度
       const pHeight = sideBar.offsetHeight; // 父元素高度
       tools.moveTo(sideBar.scrollTop, sTop + sHeight / 2 - pTop - pHeight / 2, sideBar, 'scrollTop');
+      // 获取商品列表的数据
+      this.resetGoodsList(); // 清空列表数据
+      this.getGoodsList({ type: this.sideBarList[i], page: 1, sort: 'all' });
     },
   },
   computed: mapState(['sideBarList']),
+  mounted() {
+    this.resetGoodsList();
+    this.getGoodsList({ type: this.sideBarList[0], page: 1, sort: 'all' });
+  },
 };
 </script>
 
