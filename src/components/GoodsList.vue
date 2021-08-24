@@ -18,7 +18,7 @@
           @load="onLoad"
           :immediate-check="true"
           >
-            <GoodsCard v-for="item in goodsList" :key="item.id" v-bind="item"/>
+            <GoodsCard v-for="(item, i) in goodsList" :key="i" v-bind="item"/>
           </van-list>
       </van-pull-refresh>
     </div>

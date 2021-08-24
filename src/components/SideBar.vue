@@ -3,7 +3,7 @@
       <div class="item"
        :class="{active: index === i}"
        v-for="(item,i) in sideBarList"
-       :key="i"
+       :key="item"
        @touchend="scrollTo(i, $event)"
        @touchstart="move = false"
        @touchmove="move = true"
@@ -45,8 +45,9 @@ export default {
   },
   computed: mapState(['sideBarList']),
   mounted() {
-    this.resetGoodsList();
-    this.getGoodsList({ type: this.sideBarList[0], page: 1, sort: 'all' });
+    console.log('mounted');
+    // this.resetGoodsList();
+    // this.getGoodsList({ type: this.sideBarList[0], page: 1, sort: 'all' });
   },
 };
 </script>

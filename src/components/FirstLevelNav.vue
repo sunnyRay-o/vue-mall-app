@@ -4,7 +4,7 @@
       class="nav-item"
       :class="{ active: index === i }"
       v-for="(menuItem, index) in menuList"
-      :key="index"
+      :key="menuItem.title"
       @click="scrollTo(index, $event)"
       @touchstart="move = true"
       @touchend="move = false"

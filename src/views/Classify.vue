@@ -1,9 +1,9 @@
 <template>
   <div class="classify-container">
-    <div class="search-btn">
+    <router-link :to="{name: 'Search'}" tag="div" class="search-btn">
       <van-icon name="search" class="search-icon" />
       荔枝水果9.95
-    </div>
+    </router-link>
     <FirstLevelNav />
     <template v-if="showContent">
       <SideBar />
@@ -19,7 +19,7 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapMutations, mapState, mapActions } from 'vuex';
 import FirstLevelNav from '../components/FirstLevelNav.vue';
 import SideBar from '../components/SideBar.vue';
 import GoodsList from '../components/GoodsList.vue';
@@ -30,12 +30,26 @@ export default {
     SideBar,
     GoodsList,
   },
-  computed: mapState(['showContent']),
+  computed: mapState(['showContent', 'sideBarList']),
+  methods: {
+    ...mapMutations(['resetGoodsList']),
+    ...mapActions(['getGoodsList']),
+  },
+  watch: {
+    showContent() {
+      if (this.showContent) {
+        this.resetGoodsList();
+        this.getGoodsList({ type: this.sideBarList[0], page: 1, sort: 'all' });
+      }
+    },
+  },
 };
 </script>
 <style scoped lang='less'>
 .classify-container {
   width: 375px;
+  min-height: 100vh;
+  position: absolute;
   .search-btn {
     width: 355px;
     height: 33px;

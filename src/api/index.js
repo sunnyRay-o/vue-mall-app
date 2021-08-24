@@ -21,7 +21,19 @@ const getGoodsList = (type, page, size, sort) => request.get(URLS.getGoodsList, 
     sort,
   },
 });
+const search = (type, page, size) => request.get(URLS.search, {
+  params: {
+    type, page, size,
+  },
+});
+const fuzzyQuery = (likeValue) => request.get(URLS.likeSearch, {
+  params: {
+    likeValue,
+  },
+});
 export default {
   getSideBarList,
   getGoodsList,
+  search,
+  fuzzyQuery,
 };
