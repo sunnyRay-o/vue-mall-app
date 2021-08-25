@@ -105,7 +105,6 @@ export default {
       }
     },
     async onSearch(value) {
-      console.log(value);
       if (value) {
         this.value = value;
       } else {
@@ -159,7 +158,7 @@ export default {
   },
   created() {
     this.searchList = JSON.parse(localStorage.getItem('searchList')) || [];
-    this.searchList.sort((a, b) => b.time - a.time);
+    // this.searchList.sort((a, b) => b.time - a.time);
   },
 };
 </script>

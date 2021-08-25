@@ -59,6 +59,7 @@ export default {
     async onDel() {
       if (this.result.length === 0) {
         Toast('你没有选中商品');
+        return;
       }
       try {
         await Dialog.confirm({ message: '您是否要删除已选中商品' });
@@ -94,15 +95,15 @@ export default {
   created() {
     this.getAllData();
   },
-  // watch: {
-  //   result() {
-  //     if (this.result.length === this.list.length) {
-  //       this.checked = true;
-  //     } else {
-  //       this.checked = false;
-  //     }
-  //   },
-  // },
+  watch: {
+    result() {
+      if (this.result.length === this.list.length) {
+        this.checked = true;
+      } else {
+        this.checked = false;
+      }
+    },
+  },
 };
 </script>
 

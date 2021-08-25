@@ -21,10 +21,8 @@ export default new Vuex.Store({
       if (state.counterMap[id]) {
         // 看counterMap的某一个属性是否有值,有值就可以继续操作
         if ((value === -1 && state.counterMap[id] === 1) || value === -Infinity) {
-          // 减法，并且没有数量为1
           Vue.delete(state.counterMap, id);
         } else {
-          // 加法
           Vue.set(state.counterMap, id, state.counterMap[id] + value);
         }
       } else {
