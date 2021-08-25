@@ -16,7 +16,11 @@
             </template>
             <template #action v-else>
                 <div>
-                    <van-icon :badge="badge" name="cart-o" class="shop-car" id="shopCar"/>
+                    <van-icon
+                    :badge="badge" name="cart-o" class="shop-car" id="shopCar"
+                    @click="$router.push({
+                      name: 'Shopping'
+                    })"/>
                 </div>
             </template>
         </van-search>
@@ -63,8 +67,8 @@ export default {
   },
   data() {
     return {
-      value: this.place,
       place: '酒',
+      value: this.place,
       likeList: [],
       timer: null,
       page: 1,
@@ -115,10 +119,15 @@ export default {
       this.onLoad();
       this.showLikeList = false;
       // 历史记录
-      this.searchList.unshift({ value, time: new Date().getTime() });
-      this.searchList.sort((a, b) => b.time - a.time);
-      if (this.searchList.length >= 11) {
-        this.searchList.pop();
+      const result = this.searchList.find((item) => item.value === this.value);
+      if (result) {
+        result.time = new Date().getTime();
+        this.searchList.sort((a, b) => b.time - a.time);
+      } else {
+        this.searchList.unshift({ value: this.value, time: new Date().getTime() });
+        if (this.searchList.length >= 11) {
+          this.searchList.pop();
+        }
       }
       localStorage.setItem('searchList', JSON.stringify(this.searchList));
     },

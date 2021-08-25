@@ -45,7 +45,6 @@ export default {
   },
   computed: mapState(['sideBarList']),
   mounted() {
-    console.log('mounted');
     // this.resetGoodsList();
     // this.getGoodsList({ type: this.sideBarList[0], page: 1, sort: 'all' });
   },

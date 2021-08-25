@@ -23,7 +23,6 @@ export default function ({
       };
     },
   });
-  console.log(animate);
   document.body.appendChild(animate.$el);
   // 过渡动画
   setTimeout(() => {
